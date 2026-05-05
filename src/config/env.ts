@@ -6,7 +6,7 @@ const envSchema = z.object({
 	VITE_ENABLE_MOCK_API: z
 		.string()
 		.transform((val) => val === "true")
-		.default("false"),
+		.default(false),
 	VITE_SENTRY_DSN: z.string().url().optional(),
 	VITE_APP_VERSION: z.string().optional(),
 });

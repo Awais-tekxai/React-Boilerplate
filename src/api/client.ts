@@ -96,6 +96,10 @@ apiClient.interceptors.response.use(
 			!originalRequest?._retry &&
 			!isRefreshRequest
 		) {
+			if (!originalRequest) {
+				return Promise.reject(error);
+			}
+
 			// If already refreshing, queue this request
 			if (isRefreshing) {
 				return new Promise((resolve, reject) => {
@@ -107,10 +111,6 @@ apiClient.interceptors.response.use(
 						return apiClient(originalRequest);
 					})
 					.catch((err) => Promise.reject(err));
-			}
-
-			if (!originalRequest) {
-				return Promise.reject(error);
 			}
 
 			originalRequest._retry = true;

@@ -67,7 +67,7 @@ export function useThrottle<T>(value: T, interval: number) {
  * const prevValue = usePrevious(value);
  */
 export function usePrevious<T>(value: T): T | undefined {
-	const ref = React.useRef<T>();
+	const ref = React.useRef<T | undefined>(undefined);
 
 	useEffect(() => {
 		ref.current = value;
